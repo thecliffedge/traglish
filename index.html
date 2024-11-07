@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Flashcard Word Generator</title>
+  <!-- Add Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+  
+  <!-- Link to the new CSS file -->
+  <link rel="stylesheet" href="styles.css">
+
+  <script type="module">
+    // Import the HfInference class
+    import { HfInference } from 'https://cdn.jsdelivr.net/npm/@huggingface/inference@2.6.1/+esm';
+
+    // Initialize the Hugging Face Inference client
+    const inference = new HfInference("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");
+
+    // Make inference available globally
+    window.inference = inference;
+
+    // Function to load the answer and explanation
+    async function loadAnswer() {
+      // Logic to load the answer (this is a placeholder for your actual loading logic)
+      const word = "example"; // Replace with your logic to get a random word
+      document.getElementById('word-container').innerText = word; // Display the word
+
+      // Fetch explanation from Hugging Face
+   
+    }
+
+   
+  
+  </script>
+</head>
+<body style="background-color: black;"> <!-- Keep the background black -->
+  <div class="container">
+    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode">
+      🌙 <!-- Default to moon emoji for dark mode -->
+    </button>
+    <h1>Tagalog Word Generator</h1>
+    <div class="word-answer-container" style="display: flex; flex-direction: column; align-items: center;">
+      <div class="word-container" style="display: block; margin-bottom: 20px;"> <!-- Increased margin-bottom -->
+        <div id="word-container"></div> <!-- Word container -->
+      </div>
+      <div class="answer-container" style="display: block; min-height: 50px; margin-bottom: 20px;"> <!-- Added margin-bottom -->
+        <div id="answer-container"></div> <!-- Answer container -->
+      </div>
+    </div>
+    <div class="button-container" style="margin-top: -10px;"> <!-- Added negative margin-top -->
+      <button id="generate-button">Generate Random Word</button>
+      <button id="show-answer-button">Show Answer</button>
+      <button id="learned-button">Mark as Learned</button>
+    </div>
+
+    <div class="side-by-side-container">
+      <button id="flip-order-button">Flip Order</button>
+      <button id="reset-button">Reset Progress</button>
+    </div>
+
+    <div class="progress-container">
+      <div class="progress-bar"></div>
+    </div>
+    <div id="progress-text"></div>
+    
+    <div class="explanation-container" id="explanation-container" style="display: none;"></div> <!-- Explanation container -->
+    <div class="info-container" style="margin-top: 5px;">
+      <span id="info-button" class="info-button" style="cursor: pointer; font-size: 34px;">ℹ️</span> <!-- Changed to span for simple emoji -->
+    </div>
+  </div>
+  
+  <script src="script.js" type="module"></script> <!-- Link to the new JS file -->
+  
+  <script>
+    function toggleTheme() {
+      const root = document.documentElement;
+      const themeToggleButton = document.querySelector('.theme-toggle');
+
+      // Get the current background color of the container
+      const currentBackground = getComputedStyle(root).getPropertyValue('--background').trim();
+
+      if (currentBackground === 'rgb(30, 30, 30)') { // Dark mode (1E1E1E in RGB)
+        // Switch to normal mode
+        root.style.setProperty('--background', '#FFFFFF'); // Light background for container
+        root.style.setProperty('--text-color', '#000000'); // Dark text color
+        root.style.setProperty('--button-bg', '#F0F0F0'); // Button background for normal mode
+        root.style.setProperty('--button-hover-bg', '#D0D0D0'); // Button hover background
+        themeToggleButton.textContent = '☀️'; // Change to sun emoji for normal mode
+      } else {
+        // Switch to dark mode
+        root.style.setProperty('--background', 'rgb(30, 30, 30)'); // Dark background for container
+        root.style.setProperty('--text-color', '#E0E0E0'); // Light text color
+        root.style.setProperty('--button-bg', '#1E1E1E'); // Button background for dark mode
+        root.style.setProperty('--button-hover-bg', '#333333'); // Button hover background
+        themeToggleButton.textContent = '🌙'; // Change to moon emoji for dark mode
+      }
+    }
+  </script>
+</body>
+</html>
