@@ -1,0 +1,183 @@
+:root {
+    --red: #FF0000; /* Reverted to original red */
+    --white: #FFFFFF;
+    --blue: #0000FF;
+    --background: #1E1E1E; /* Default dark background for container */
+    --text-color: #E0E0E0; /* Light text color */
+    --button-bg: #1E1E1E; /* Button background for dark mode */
+    --button-hover-bg: #0000CC; /* Darker blue for button hover */
+    --answer-text-color: black; /* Default color for light mode */
+}
+
+body {
+    background-color: black; /* Keep the body background black */
+    color: var(--text-color); /* Default text color */
+    font-family: 'Arial', sans-serif; /* Retained original font */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px; /* Added padding for better spacing */
+}
+
+.container {
+    position: relative; /* Add this to allow absolute positioning within the container */
+    background: var(--background); /* Use the variable for the container background */
+    border-radius: 15px; /* Slightly increased border radius */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); /* Enhanced shadow */
+    padding: 30px; /* Increased padding */
+    margin-top: 20px;
+    text-align: center;
+}
+
+button {
+    color: var(--white);
+    background: linear-gradient(to bottom, var(--blue), var(--blue));
+    border: none;
+    padding: 12px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 20px;
+    margin: 10px;
+    transition: all 0.3s ease; /* Smooth transition for all changes */
+    position: relative;
+    overflow: hidden;
+}
+
+button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.15);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+button:hover {
+    transform: scale(1.05); /* Slightly enlarge on hover */
+}
+
+button:hover::before {
+    opacity: 1;
+}
+
+.info-button {
+    background-color: transparent; /* Changed to transparent instead of white */
+    color: var(--blue); /* Changed text color for contrast */
+    border: none;
+    border-radius: 50%;
+    width: 28px; /* Increased size */
+    height: 28px; /* Increased size */
+    font-size: 14px; /* Retained original font size */
+    cursor: pointer;
+    margin-left: 10px;
+    transition: background-color 0.3s; /* Added transition */
+}
+
+.info-button:hover {
+    background-color: rgba(240, 240, 240, 0.2); /* Change background on hover for visibility */
+}
+
+.explanation-container {
+    margin-top: 20px;
+    font-size: 16px;
+    text-align: left;
+    max-width: 600px;
+    display: none; /* Initially hidden */
+}
+
+.word-answer-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 0;
+}
+
+#word-container, #answer-container {
+    font-size: 36px;
+    margin: 0 10px;
+}
+
+#word-container {
+    color: var(--red); /* Reverted to use original red */
+    font-weight: bold;
+}
+
+#answer-container {
+    color: var(--text-color);
+    font-weight: bold;
+}
+
+.button-container {
+    display: flex;
+    flex-direction: column; /* Stack buttons vertically */
+    align-items: center; /* Center the buttons */
+    margin-top: 20px;
+}
+
+.side-by-side-container {
+    display: flex; /* Arrange buttons side by side */
+    justify-content: center; /* Center the buttons */
+    margin-top: 10px; /* Add some space above */
+}
+
+.side-by-side-container button {
+    margin: 5px; /* Adjust margin for spacing */
+    width: 100px; /* Keep the width for consistency */
+    font-size: 10px; /* Smaller font size for bottom buttons */
+}
+
+button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.progress-container {
+    width: 100%;
+    background-color: #e0e0e0;
+    border-radius: 5px;
+    margin-top: 20px;
+}
+
+.progress-bar {
+    width: 0;
+    height: 20px;
+    background-color: var(--blue);
+    border-radius: 5px;
+    transition: width 0.5s ease-in-out;
+}
+
+#progress-text {
+    margin-top: 5px;
+    font-size: 14px;
+}
+
+.theme-toggle {
+    position: absolute;
+    top: 1px; /* Adjust this value to move it higher */
+    right: 5px;
+    cursor: pointer;
+    font-size: 18px; /* Make the emoji smaller */
+    background: transparent;
+    border: none;
+    color: var(--text-color);
+    transition: color 0.3s, background-color 0.3s;
+    padding: 5px;
+    border-radius: 50%;
+    z-index: 1; /* Ensure the button is above other elements */
+}
+
+.theme-toggle:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Add this at the end of your CSS file */
+body.dark-mode {
+    --answer-text-color: var(--text-color); /* Use the text color variable for dark mode */
+}
+
+body.dark-mode #answer-container {
+    color: var(--text-color); /* Use the text color variable for dark mode */
+}
