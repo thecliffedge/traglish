@@ -173,6 +173,11 @@ button:disabled {
     background-color: rgba(255, 255, 255, 0.1);
 }
 
+button:hover, button:focus {
+    box-shadow: 0 0 20px rgba(255, 0, 0, 0.7);
+    outline: none; /* Remove default focus outline */
+}
+
 /* Add this at the end of your CSS file */
 body.dark-mode {
     --answer-text-color: var(--text-color); /* Use the text color variable for dark mode */
